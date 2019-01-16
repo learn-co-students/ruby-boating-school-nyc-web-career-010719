@@ -24,12 +24,21 @@ class Student
   end
 
   def add_boating_test(boating_test, status, instructor)
-    # binding.pry
     BoatingTest.new(self, boating_test, status, instructor)
   end
 
   def self.find_student(stud)
     Student.all.select {|student| student.first_name == stud.first_name}
+  end
+
+  def grade_percentage
+    hash = Hash.new(0)
+    self.boating_tests.each do |test|
+      if test.status != "pending"
+        hash[test.status] += 1
+      end
+    end
+    (hash["passed"].to_f/(hash["failed"] + hash["passed"])) * 100
   end
 
 end
