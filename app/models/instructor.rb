@@ -18,8 +18,7 @@ class Instructor
   end
 
   def students
-    boating_tests.map {|boatingtest|
-      boatingtest.student}
+    boating_tests.map {|boatingtest| boatingtest.student}
   end
 
   def pass_student(student, test)
